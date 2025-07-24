@@ -1,0 +1,10 @@
+{
+  "pointsTransactions": true,
+  "historyViews": true,
+  "ticketCreation": true,
+  "ticketDeletion": true,
+  "ticketClosure": true,
+  "balanceChecks": false,
+  "leaderboardViews": false,
+  "helpCommands": false
+}

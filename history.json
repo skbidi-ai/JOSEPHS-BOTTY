@@ -1,0 +1,110 @@
+{
+  "721063236371480717": [
+    {
+      "action": "give",
+      "amount": 1,
+      "adminId": "721063236371480717",
+      "oldBalance": 3,
+      "newBalance": 4,
+      "timestamp": "2025-07-16T15:41:53.823Z"
+    },
+    {
+      "action": "remove",
+      "amount": 4,
+      "adminId": "721063236371480717",
+      "oldBalance": 4,
+      "newBalance": 0,
+      "timestamp": "2025-07-16T15:42:13.976Z"
+    },
+    {
+      "action": "give",
+      "amount": 1,
+      "adminId": "721063236371480717",
+      "oldBalance": 0,
+      "newBalance": 1,
+      "timestamp": "2025-07-16T16:02:25.270Z"
+    },
+    {
+      "action": "give",
+      "amount": 1,
+      "adminId": "721063236371480717",
+      "oldBalance": 1,
+      "newBalance": 2,
+      "timestamp": "2025-07-16T16:08:40.100Z"
+    },
+    {
+      "action": "remove",
+      "amount": 2,
+      "adminId": "721063236371480717",
+      "oldBalance": 2,
+      "newBalance": 0,
+      "timestamp": "2025-07-16T16:35:11.964Z"
+    },
+    {
+      "action": "give",
+      "amount": 1200,
+      "adminId": "721063236371480717",
+      "oldBalance": 0,
+      "newBalance": 1200,
+      "timestamp": "2025-07-16T16:36:22.934Z"
+    },
+    {
+      "action": "remove",
+      "amount": 1200,
+      "adminId": "721063236371480717",
+      "oldBalance": 1200,
+      "newBalance": 0,
+      "timestamp": "2025-07-17T23:07:49.636Z"
+    },
+    {
+      "action": "give",
+      "amount": 6,
+      "adminId": "721063236371480717",
+      "oldBalance": 0,
+      "newBalance": 6,
+      "timestamp": "2025-07-23T20:49:56.974Z"
+    },
+    {
+      "action": "remove",
+      "amount": 6,
+      "adminId": "1394447729379246230",
+      "oldBalance": 6,
+      "newBalance": 0,
+      "timestamp": "2025-07-23T20:50:11.328Z"
+    },
+    {
+      "action": "give",
+      "amount": 12000,
+      "adminId": "721063236371480717",
+      "oldBalance": 0,
+      "newBalance": 12000,
+      "timestamp": "2025-07-23T22:57:20.555Z"
+    },
+    {
+      "action": "remove",
+      "amount": 2,
+      "adminId": "721063236371480717",
+      "oldBalance": 12000,
+      "newBalance": 11998,
+      "timestamp": "2025-07-23T23:13:08.969Z"
+    },
+    {
+      "action": "remove",
+      "amount": 2,
+      "adminId": "721063236371480717",
+      "oldBalance": 11998,
+      "newBalance": 11996,
+      "timestamp": "2025-07-23T23:19:13.002Z"
+    }
+  ],
+  "1312918603405721661": [
+    {
+      "action": "remove",
+      "amount": 1,
+      "adminId": "721063236371480717",
+      "oldBalance": 0,
+      "newBalance": 0,
+      "timestamp": "2025-07-16T15:45:58.879Z"
+    }
+  ]
+}
