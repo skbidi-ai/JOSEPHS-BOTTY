@@ -106,7 +106,7 @@ client.on("messageCreate", async (message) => {
       const balanceEmbed = new EmbedBuilder()
         .setTitle("Points Balance")
         .setDescription(`${user.displayName} has **${balance}** Refferal Points`)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setThumbnail(user.displayAvatarURL());
 
       // Log balance check if enabled
@@ -114,7 +114,7 @@ client.on("messageCreate", async (message) => {
         const logEmbed = new EmbedBuilder()
           .setTitle("🔍 Bloxly Balance Check Log")
           .setDescription(`**User:** ${message.author.displayName}\n**Checked Balance Of:** ${user.displayName}\n**Current Balance:** ${balance}`)
-          .setColor("BDC2FC")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `Target User ID: ${userId} | Checker ID: ${message.author.id}` });
 
