@@ -147,9 +147,9 @@ client.on("messageCreate", async (message) => {
       const newBalance = coinManager.addCoins(user.id, amount, message.author.id);
 
       const giveEmbed = new EmbedBuilder()
-        .setTitle("💰 Points Given")
+        .setTitle("💰 Bloxly Points Given")
         .setDescription(`Given **${amount}** Points to ${user.displayName}\nNew balance: **${newBalance}** Points`)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setThumbnail(user.displayAvatarURL());
 
       message.channel.send({ embeds: [giveEmbed] });
@@ -157,9 +157,9 @@ client.on("messageCreate", async (message) => {
       // Log to the logs channel if enabled
       if (shouldLog('pointsTransactions')) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("📊 Points Transaction Log")
+          .setTitle("📊 Bloxly Points Transaction Log")
           .setDescription(`**Action:** Points Given\n**Admin:** ${message.author.displayName}\n**User:** ${user.displayName}\n**Amount:** +${amount}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${user.id}` });
 
@@ -185,9 +185,9 @@ client.on("messageCreate", async (message) => {
       const newBalance = coinManager.removeCoins(user.id, amount, message.author.id);
 
       const removeEmbed = new EmbedBuilder()
-        .setTitle("💰 Refferal Points Removed")
+        .setTitle("💰 Bloxly Points Removed")
         .setDescription(`Removed **${amount}** Points from ${user.displayName}\nNew balance: **${newBalance}** Points`)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setThumbnail(user.displayAvatarURL());
 
       message.channel.send({ embeds: [removeEmbed] });
@@ -195,9 +195,9 @@ client.on("messageCreate", async (message) => {
       // Log to the logs channel if enabled
       if (shouldLog('pointsTransactions')) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("📊 Points Transaction Log")
+          .setTitle("📊 Bloxly Points Transaction Log")
           .setDescription(`**Action:** Points Removed\n**Admin:** ${message.author.displayName}\n**User:** ${user.displayName}\n**Amount:** -${amount}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${user.id}` });
 
@@ -223,9 +223,9 @@ client.on("messageCreate", async (message) => {
       const newBalance = coinManager.setCoins(user.id, amount, message.author.id);
 
       const setEmbed = new EmbedBuilder()
-        .setTitle("💰 Refferal Points Set")
-        .setDescription(`Set ${user.displayName}'s Refferal Points to **${newBalance}**`)
-        .setColor("#00FF46")
+        .setTitle("💰 Bloxly Points Set")
+        .setDescription(`Set ${user.displayName}'s Bloxly Points to **${newBalance}**`)
+        .setColor("#BDC2FC")
         .setThumbnail(user.displayAvatarURL());
 
       message.channel.send({ embeds: [setEmbed] });
