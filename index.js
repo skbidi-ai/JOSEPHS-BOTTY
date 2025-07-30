@@ -931,7 +931,7 @@ client.on("interactionCreate", async (interaction) => {
                 const retryEmbed = new EmbedBuilder()
                   .setTitle("🔄 Please Try Again")
                   .setDescription("**Who are you trading with?**\n\nPlease provide their Discord username, display name, or mention them.\n\nYou have 60 seconds to respond.")
-                  .setColor("#00FF46")
+                  .setColor("#BDC2FC")
                   .setThumbnail(interaction.user.displayAvatarURL())
                   .setFooter({ text: "Question 1 of 3 | 60 seconds to respond" });
 
@@ -959,7 +959,7 @@ client.on("interactionCreate", async (interaction) => {
               const question2Embed = new EmbedBuilder()
                 .setTitle("💸 Bloxly Middleman Service - Question 2/3")
                 .setDescription("**What items/services are being traded?**\n\nPlease describe what you and your trading partner are exchanging.\n\nYou have 60 seconds to respond.")
-                .setColor("#00FF46")
+                .setColor("#BDC2FC")
                 .setThumbnail(interaction.user.displayAvatarURL())
                 .setFooter({ text: "Question 2 of 3 | 60 seconds to respond" });
 
@@ -1153,9 +1153,9 @@ client.on("interactionCreate", async (interaction) => {
               const logChannel = client.channels.cache.get(log);
               if (logChannel) {
                 const logEmbed = new EmbedBuilder()
-                  .setTitle("🗑️ Ticket Deleted")
-                  .setDescription(`**User:** <@${interaction.user.id}> deleted a ticket.`)
-                  .setColor("#00FF46")
+                  .setTitle("🗑️ BloxlyTicket Deleted")
+                  .setDescription(`**User:** <@${interaction.user.id}> deleted a Bloxly ticket.`)
+                  .setColor("#BDC2FC")
                   .setTimestamp()
                   .setFooter({ text: `Ticket ID: ${channel.id}` });
                 logChannel.send({ embeds: [logEmbed] }).catch(console.error);
