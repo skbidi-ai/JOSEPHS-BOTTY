@@ -112,9 +112,9 @@ client.on("messageCreate", async (message) => {
       // Log balance check if enabled
       if (shouldLog('balanceChecks') && userId !== message.author.id) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("🔍 Balance Check Log")
+          .setTitle("🔍 Bloxly Balance Check Log")
           .setDescription(`**User:** ${message.author.displayName}\n**Checked Balance Of:** ${user.displayName}\n**Current Balance:** ${balance}`)
-          .setColor("#00FF46")
+          .setColor("BDC2FC")
           .setTimestamp()
           .setFooter({ text: `Target User ID: ${userId} | Checker ID: ${message.author.id}` });
 
@@ -233,9 +233,9 @@ client.on("messageCreate", async (message) => {
       // Log to the logs channel if enabled
       if (shouldLog('pointsTransactions')) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("📊 Points Transaction Log")
-          .setDescription(`**Action:** Points Set\n**Admin:** ${message.author.displayName}\n**User:** ${user.displayName}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}`)
-          .setColor("#00FF46")
+          .setTitle("📊 Bloxly Points Transaction Log")
+          .setDescription(`**Action:** Bloxly Points Set\n**Admin:** ${message.author.displayName}\n**User:** ${user.displayName}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}`)
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${user.id}` });
 
@@ -253,7 +253,7 @@ client.on("messageCreate", async (message) => {
       const leaderboard = coinManager.getLeaderboard(10);
 
       if (leaderboard.length === 0) {
-        return message.channel.send("📊 No users have Refferal Points yet!");
+        return message.channel.send("📊 No users have Bloxly Refferal Points yet!");
       }
 
       let description = "";
@@ -266,17 +266,17 @@ client.on("messageCreate", async (message) => {
       }
 
       const leaderboardEmbed = new EmbedBuilder()
-        .setTitle("🏆 Refferal Points Leaderboard")
+        .setTitle("🏆 Bloxly Refferal Points Leaderboard")
         .setDescription(description)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setFooter({ text: `${message.guild.name} | Top 10 Users` });
 
       // Log leaderboard view if enabled
       if (shouldLog('leaderboardViews')) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("🏆 Leaderboard View Log")
+          .setTitle("🏆 Bloxly Leaderboard View Log")
           .setDescription(`**User:** ${message.author.displayName}\n**Action:** Viewed leaderboard`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${message.author.id}` });
 
@@ -302,7 +302,7 @@ client.on("messageCreate", async (message) => {
       const history = coinManager.getHistory(user.id, 10);
 
       if (history.length === 0) {
-        return message.channel.send(`📊 No transaction history found for ${user.displayName}.`);
+        return message.channel.send(`📊 No Bloxly transaction history found for ${user.displayName}.`);
       }
 
       let description = "";
@@ -314,23 +314,23 @@ client.on("messageCreate", async (message) => {
 
         let actionText = "";
         if (transaction.action === "give") {
-          actionText = `📈 **+${transaction.amount}** points given`;
+          actionText = `📈 **+${transaction.amount}** Bloxly points given`;
         } else if (transaction.action === "remove") {
-          actionText = `📉 **-${transaction.amount}** points removed`;
+          actionText = `📉 **-${transaction.amount}** Bloxly points removed`;
         } else if (transaction.action === "set") {
           actionText = `⚖️ Points set to **${transaction.newBalance}**`;
         }
 
         description += `${actionText}\n`;
-        description += `🔸 **Admin:** ${adminName}\n`;
-        description += `🔸 **Balance:** ${transaction.oldBalance} → ${transaction.newBalance}\n`;
-        description += `🔸 **Date:** ${date} at ${time}\n\n`;
+        description += `👮 **Responsible Admin:** ${adminName}\n`;
+        description += `💰 **Balance:** ${transaction.oldBalance} → ${transaction.newBalance}\n`;
+        description += `📅 **Date:** ${date} at ${time}\n\n`;
       }
 
       const historyEmbed = new EmbedBuilder()
-        .setTitle(`📊 Points History for ${user.displayName}`)
+        .setTitle(`📊 Bloxly Points History for ${user.displayName}`)
         .setDescription(description)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setThumbnail(user.displayAvatarURL())
         .setFooter({ text: `Showing last 10 transactions | User ID: ${user.id}` });
 
@@ -339,9 +339,9 @@ client.on("messageCreate", async (message) => {
       // Log the history view to the logs channel if logging is enabled
       if (shouldLog('historyViews')) {
         const viewLogEmbed = new EmbedBuilder()
-          .setTitle("👁️ History View Log")
+          .setTitle("👮 Bloxly History View Log")
           .setDescription(`**User:** ${message.author.displayName}\n**Viewed History Of:** ${user.displayName}\n**Action:** Viewed transaction history`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `Target User ID: ${user.id} | Viewer ID: ${message.author.id}` });
 
@@ -357,18 +357,18 @@ client.on("messageCreate", async (message) => {
     // Help command
     else if (command === "help") {
       const helpEmbed = new EmbedBuilder()
-        .setTitle("💰 Refferal Points System Help")
+        .setTitle("💰 Bloxly Points System Help")
         .setDescription(`
 **User Commands:**
-\`!Points\` or \`!Points balance\` - Check your Refferal Points balance
-\`!Points balance @user\` - Check another user's balance
-\`!Points leaderboard\` - View the top 10 users
+\`!Points\` or \`!Points balance\` - Check your Bloxly Refferal Points balance
+\`!Points balance @user\` - Check another user's Bloxly Points balance
+\`!Points leaderboard\` - View the top 10 Bloxly users
 
 **Admin Commands:**
-\`!Points give @user amount\` - Give Refferal Points to a user
-\`!Points remove @user amount\` - Remove Refferal Points from a user
-\`!Points set @user amount\` - Set a user's Refferal Points balance
-\`!Points history @user\` - View transaction history for a user
+\`!Points give @user amount\` - Give Bloxly Refferal Points to a user
+\`!Points remove @user amount\` - Remove Bloxly Refferal Points from a user
+\`!Points set @user amount\` - Set a user's Bloxly Refferal Points balance
+\`!Points history @user\` - View Bloxly transaction history for a user
 
 **Owner Commands:**
 \`!log status\` - View current logging settings
@@ -376,15 +376,15 @@ client.on("messageCreate", async (message) => {
 \`!log enable <type>\` - Enable specific logging type
 \`!log disable <type>\` - Disable specific logging type
         `)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setFooter({ text: "Admin commands require Administrator permissions" });
 
       // Log help command usage if enabled
       if (shouldLog('helpCommands')) {
         const logEmbed = new EmbedBuilder()
-          .setTitle("❓ Help Command Log")
-          .setDescription(`**User:** ${message.author.displayName}\n**Action:** Viewed help command`)
-          .setColor("#00FF46")
+          .setTitle("❓ Bloxly Help Command Log")
+          .setDescription(`**User:** ${message.author.displayName}\n**Action:** Viewed Bloxly help command`)
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${message.author.id}` });
 
@@ -416,9 +416,9 @@ client.on("messageCreate", async (message) => {
       });
 
       const statusEmbed = new EmbedBuilder()
-        .setTitle("📊 Logging Status")
+        .setTitle("📊 Bloxly Logging Status")
         .setDescription(statusText)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setFooter({ text: "Use !log toggle <type> to change settings" });
 
       return message.channel.send({ embeds: [statusEmbed] });
@@ -447,16 +447,16 @@ client.on("messageCreate", async (message) => {
       const emoji = config[logType] ? '✅' : '❌';
 
       const confirmEmbed = new EmbedBuilder()
-        .setTitle("⚙️ Logging Updated")
+        .setTitle("⚙️ Bloxly Logging Updated")
         .setDescription(`${emoji} **${logType}** logging has been **${action}**`)
-        .setColor("#00FF46");
+        .setColor("#BDC2FC");
 
       return message.channel.send({ embeds: [confirmEmbed] });
     }
 
     if (command === "help") {
       const helpEmbed = new EmbedBuilder()
-        .setTitle("📝 Logging Management Help")
+        .setTitle("📝 Bloxly Logging Management Help")
         .setDescription(`
 **Commands:**
 \`!log status\` - View current logging settings
@@ -465,16 +465,16 @@ client.on("messageCreate", async (message) => {
 \`!log disable <type>\` - Disable specific logging type
 
 **Available Log Types:**
-• \`pointsTransactions\` - Points give/remove/set actions
-• \`historyViews\` - When someone views another user's history
-• \`ticketCreation\` - When tickets are created
-• \`ticketDeletion\` - When tickets are deleted
-• \`ticketClosure\` - When tickets are closed
-• \`balanceChecks\` - When someone checks another user's balance
-• \`leaderboardViews\` - When someone views the leaderboard
-• \`helpCommands\` - When someone uses help commands
+• \`pointsTransactions\` - Points give/remove/set Bloxly actions
+• \`historyViews\` - When someone views another user's Bloxly history
+• \`ticketCreation\` - When Bloxly tickets are created
+• \`ticketDeletion\` - When Bloxly tickets are deleted
+• \`ticketClosure\` - When Bloxly tickets are closed
+• \`balanceChecks\` - When someone checks another user's Bloxly balance
+• \`leaderboardViews\` - When someone views the Bloxly leaderboard
+• \`helpCommands\` - When someone uses Bloxly help commands
         `)
-        .setColor("#00FF46")
+        .setColor("#BDC2FC")
         .setFooter({ text: "Only the bot owner can manage logging settings" });
 
       return message.channel.send({ embeds: [helpEmbed] });
@@ -487,11 +487,11 @@ client.on("messageCreate", async (message) => {
       const row = new ActionRowBuilder()
         .addComponents(
           new ButtonBuilder()
-            .setLabel("💰 Points Claiming Tickets")
+            .setLabel("💰 Bloxly Points Claiming Tickets")
             .setStyle(ButtonStyle.Primary)
             .setCustomId("support"),
           new ButtonBuilder()
-            .setLabel("💸 Middleman Tickets")
+            .setLabel("🤝 Bloxly Middleman Tickets")
             .setStyle(ButtonStyle.Primary)
             .setCustomId("premium")
         );
@@ -502,14 +502,14 @@ client.on("messageCreate", async (message) => {
         .setDescription(
 
           `**Welcome to our Ticket System!** 🎫
-         ==========================
-💰 **Points Claiming Tickets:** For claiming your referral points.
+         ====================================================
+💰 **Bloxly Points Claiming Tickets:** For claiming your referral points.
 
-💸 **Middleman Tickets:** For using our free middleman services.
+🤝 **Bloxly Middleman Tickets:** For using our free middleman services.
 `
         )
-        .setFooter({ text: `${message.guild.name} Tickets | Made by Bloxly Trading`, iconURL: message.guild.iconURL() })
-        .setColor("#00FF46");
+        .setFooter({ text: `${message.guild.name} Tickets | Made by Bloxly Services`, iconURL: message.guild.iconURL() })
+        .setColor("#BDC2FC");
 
       message.channel.send({
         embeds: [ticketmsg],
@@ -527,7 +527,7 @@ client.on("interactionCreate", async (interaction) => {
 
         const row2 = new ActionRowBuilder().addComponents(
           new ButtonBuilder()
-            .setLabel("⚙️ Manage")
+            .setLabel("⚙️ Manage Bloxly Actions")
             .setCustomId("close")
             .setStyle(ButtonStyle.Primary)
         );
@@ -535,27 +535,27 @@ client.on("interactionCreate", async (interaction) => {
         const userBalance = coinManager.getBalance(interaction.user.id);
 
         const pointsEmbed = new EmbedBuilder()
-          .setTitle("💰 Points Balance")
-          .setDescription(`**${interaction.user.displayName}** currently has **${userBalance}** Refferal Points`)
-          .setColor("#00FF46")
+          .setTitle("💰 Bloxly Points Balance")
+          .setDescription(`**${interaction.user.displayName}** currently has **${userBalance}** Bloxly Refferal Points`)
+          .setColor("#BDC2FC")
           .setThumbnail(interaction.user.displayAvatarURL())
           .setFooter({ text: "Points Balance | Staff Information" });
 
         const supportmsg = new EmbedBuilder()
           .setTitle(`${interaction.user.displayName}'s Points Claiming Ticket`)
           .setDescription(
-            "**Hello!**\nWelcome to your points claiming ticket! Our staff team will help you claim your referral points."
+            "**Hello!**\nWelcome to your Bloxly points claiming ticket! Our staff team will help you claim your Bloxly referral points."
           )
-          .setFooter({ text: `User ID: ${interaction.user.id} Bloxly Trading.` })
-          .setColor("#00FF46");
+          .setFooter({ text: `Bloxly User ID: ${interaction.user.id} Bloxly Services.` })
+          .setColor("#BDC2FC");
 
         const premiummsg = new EmbedBuilder()
           .setTitle(`${interaction.user.displayName}'s Middleman Ticket`)
           .setDescription(
-            "**Hello there!**\nPlease provide the details for your middleman service request, and our staff team will respond as fast as possible"
+            "**Hello there!**\nPlease provide the details for your Bloxly middleman service request, and our staff team will respond as fast as possible"
           )
-          .setFooter({ text: `User ID: ${interaction.user.id} Bloxly Trading.` })
-          .setColor("#00FF46");
+          .setFooter({ text: `User ID: ${interaction.user.id} Bloxly Services.` })
+          .setColor("#BDC2FC");
 
         if (interaction.customId === "support") {
           const ticket = await interaction.guild.channels.create({
@@ -593,9 +593,9 @@ client.on("interactionCreate", async (interaction) => {
               const logChannel = client.channels.cache.get(log);
               if (logChannel) {
                 const logEmbed = new EmbedBuilder()
-                  .setTitle("🎫 New Ticket Created")
-                  .setDescription(`**User:** <@${interaction.user.id}> opened <#${ticket.id}> under Points Claiming Category!`)
-                  .setColor("#00FF46")
+                  .setTitle("🎫 New Bloxly Ticket Created")
+                  .setDescription(`**User:** <@${interaction.user.id}> opened <#${ticket.id}> under Bloxly Points Claiming Category!`)
+                  .setColor("#BDC2FC")
                   .setTimestamp()
                   .setFooter({ text: `Ticket ID: ${ticket.id}` });
 
@@ -616,9 +616,9 @@ client.on("interactionCreate", async (interaction) => {
 
           // Ask the user how many points they would like to claim with an embed
           const claimEmbed = new EmbedBuilder()
-            .setTitle("💰 Points Claiming System")
-            .setDescription("How many points would you like to claim?\n\nPlease respond with a number in the next 30 seconds.")
-            .setColor("#00FF46")
+            .setTitle("💰 Bloxly Points Claiming System")
+            .setDescription("How many Bloxly points would you like to claim?\n\nPlease respond with a number in the next 30 seconds.")
+            .setColor("#BDC2FC")
             .setThumbnail(interaction.user.displayAvatarURL())
             .setFooter({ text: "You have 30 seconds to respond" });
 
@@ -635,9 +635,9 @@ client.on("interactionCreate", async (interaction) => {
 
             if (isNaN(pointsToClaim) || pointsToClaim <= 0) {
               const errorEmbed = new EmbedBuilder()
-                .setTitle("❌ Invalid Input")
-                .setDescription("Invalid number of points. Please provide a valid number.")
-                .setColor("#00FF46");
+                .setTitle("❌ Invalid Bloxly Input")
+                .setDescription("Invalid Bloxly Input. Please provide a valid number.")
+                .setColor("#BDC2FC");
               message.reply({ embeds: [errorEmbed] });
               collector.stop();
               return;
@@ -647,9 +647,9 @@ client.on("interactionCreate", async (interaction) => {
 
             if (pointsToClaim > userBalance) {
               const insufficientEmbed = new EmbedBuilder()
-                .setTitle("❌ Insufficient Points")
+                .setTitle("❌ Insufficient Bloxly Points")
                 .setDescription(`You don't have enough points to claim that amount.\nYour current balance is **${userBalance}** points.`)
-                .setColor("#00FF46");
+                .setColor("#BDC2FC");
               message.reply({ embeds: [insufficientEmbed] });
               collector.stop();
               return;
@@ -659,19 +659,19 @@ client.on("interactionCreate", async (interaction) => {
             const approvalRow = new ActionRowBuilder()
               .addComponents(
                 new ButtonBuilder()
-                  .setLabel("✅ Approve")
+                  .setLabel("✅ Approve Claim")
                   .setCustomId(`approve_${interaction.user.id}_${pointsToClaim}`)
                   .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
-                  .setLabel("❌ Deny")
+                  .setLabel("❌ Deny Claim")
                   .setCustomId(`deny_${interaction.user.id}_${pointsToClaim}`)
                   .setStyle(ButtonStyle.Danger)
               );
 
             const approvalEmbed = new EmbedBuilder()
-              .setTitle("⏳ Awaiting Admin Approval")
+              .setTitle("⏳ Awaiting Bloxly Admin Approval")
               .setDescription(`**${interaction.user.displayName}** wants to claim **${pointsToClaim}** points.\n\nCurrent balance: **${userBalance}** points\nBalance after claim: **${userBalance - pointsToClaim}** points\n\n**Admin approval required.**`)
-              .setColor("#00FF46")
+              .setColor("#BDC2FC")
               .setThumbnail(interaction.user.displayAvatarURL())
               .setFooter({ text: "Admin approval required | Staff use buttons below" });
 
@@ -686,9 +686,9 @@ client.on("interactionCreate", async (interaction) => {
           collector.on('end', collected => {
             if (collected.size === 0) {
               const timeoutEmbed = new EmbedBuilder()
-                .setTitle("⏰ Time Expired")
+                .setTitle("⏰ Ticket Time Expired")
                 .setDescription("You did not provide the number of points to claim in time.\n\n⚠️ **Deleting ticket in 5 minutes if there are no new messages.**")
-                .setColor("#00FF46");
+                .setColor("#BDC2FC");
               ticket.send({ embeds: [timeoutEmbed] }).then(() => {
                 setTimeout(async () => {
                   try {
@@ -701,9 +701,9 @@ client.on("interactionCreate", async (interaction) => {
                         const logChannel = client.channels.cache.get(log);
                         if (logChannel) {
                           const logEmbed = new EmbedBuilder()
-                            .setTitle("🗑️ Ticket Auto-Deleted")
+                            .setTitle("🗑️ Bloxly Ticket Auto-Deleted")
                             .setDescription(`**Ticket:** ${ticket.name}\n**Reason:** No response within timeout period\n**Type:** Points Claiming`)
-                            .setColor("#00FF46")
+                            .setColor("#BDC2FC")
                             .setTimestamp()
                             .setFooter({ text: `Ticket ID: ${ticket.id}` });
 
@@ -749,7 +749,7 @@ client.on("interactionCreate", async (interaction) => {
             });
 
           interaction.reply({
-            content: `<#${ticket.id}> has been made for you under Middleman Services Category.`,
+            content: `<#${ticket.id}> has been made for you under Bloxly Middleman Services Category.`,
             ephemeral: true,
           });
 
@@ -757,9 +757,9 @@ client.on("interactionCreate", async (interaction) => {
               const logChannel = client.channels.cache.get(log);
               if (logChannel) {
                 const logEmbed = new EmbedBuilder()
-                  .setTitle("🎫 New Ticket Created")
+                  .setTitle("🎫 New Bloxly Ticket Created")
                   .setDescription(`**User:** <@${interaction.user.id}> opened <#${ticket.id}> under Middleman Services Category!`)
-                  .setColor("#00FF46")
+                  .setColor("#BDC2FC")
                   .setTimestamp()
                   .setFooter({ text: `Ticket ID: ${ticket.id}` });
 
@@ -784,9 +784,9 @@ client.on("interactionCreate", async (interaction) => {
 
           // Question 1: Trading Partner
           const question1Embed = new EmbedBuilder()
-            .setTitle("💸 Middleman Service - Question 1/3")
+            .setTitle("💸 Bloxly Middleman Service - Question 1/3")
             .setDescription("**Who are you trading with?**\n\nPlease provide their Discord username, display name, or mention them.\n\nYou have 60 seconds to respond.")
-            .setColor("#00FF46")
+            .setColor("#BDC2FC")
             .setThumbnail(interaction.user.displayAvatarURL())
             .setFooter({ text: "Question 1 of 3 | 60 seconds to respond" });
 
@@ -836,9 +836,9 @@ client.on("interactionCreate", async (interaction) => {
 
             if (!tradingPartner) {
               const notFoundEmbed = new EmbedBuilder()
-                .setTitle("❌ User Not Found")
+                .setTitle("❌ Bloxly User Not Found")
                 .setDescription(`Could not find a user with the name "${partnerName}". Please try mentioning them with @ or provide their exact username/display name.`)
-                .setColor("#00FF46");
+                .setColor("#BDC2FC");
               message.reply({ embeds: [notFoundEmbed] });
               return;
             }
@@ -847,7 +847,7 @@ client.on("interactionCreate", async (interaction) => {
               const selfTradeEmbed = new EmbedBuilder()
                 .setTitle("❌ Invalid Trading Partner")
                 .setDescription("You cannot trade with yourself! Please provide a different user.")
-                .setColor("#00FF46");
+                .setColor("#BDC2FC");
               message.reply({ embeds: [selfTradeEmbed] });
               return;
             }
@@ -856,19 +856,19 @@ client.on("interactionCreate", async (interaction) => {
             const confirmationRow = new ActionRowBuilder()
               .addComponents(
                 new ButtonBuilder()
-                  .setLabel("✅ Yes, this is correct")
+                  .setLabel("✅ Yes, this is correct.")
                   .setCustomId(`confirm_partner_${tradingPartner.id}`)
                   .setStyle(ButtonStyle.Success),
                 new ButtonBuilder()
-                  .setLabel("❌ No, wrong person")
+                  .setLabel("❌ No, wrong person try again.")
                   .setCustomId(`deny_partner_${tradingPartner.id}`)
                   .setStyle(ButtonStyle.Danger)
               );
 
             const confirmationEmbed = new EmbedBuilder()
-              .setTitle("👤 Confirm Trading Partner")
+              .setTitle("🤝 Confirm Trading Partner")
               .setDescription(`Is **${tradingPartner.displayName}** (${tradingPartner.username}) the correct person you want to trade with?`)
-              .setColor("#00FF46")
+              .setColor("#BDC2FC")
               .setThumbnail(tradingPartner.displayAvatarURL())
               .setFooter({ text: "Please confirm if this is the right person" });
 
@@ -905,9 +905,9 @@ client.on("interactionCreate", async (interaction) => {
                   });
 
                   const addedEmbed = new EmbedBuilder()
-                    .setTitle("✅ Trading Partner Added")
+                    .setTitle("✅ Bloxly Trading Partner Added")
                     .setDescription(`${tradingPartner.displayName} has been added to this ticket and can now participate in the conversation.`)
-                    .setColor("#00FF46")
+                    .setColor("#BDC2FC")
                     .setThumbnail(tradingPartner.displayAvatarURL());
 
                   await i.update({ embeds: [addedEmbed], components: [] });
@@ -916,9 +916,9 @@ client.on("interactionCreate", async (interaction) => {
                   console.error('Error adding trading partner:', error);
 
                   const errorEmbed = new EmbedBuilder()
-                    .setTitle("⚠️ Permission Error")
+                    .setTitle("🚨 Bloxly Permission Error")
                     .setDescription(`Found ${tradingPartner.displayName} but couldn't add them to the ticket. Staff can manually add them.`)
-                    .setColor("#00FF46");
+                    .setColor("#BDC2FC");
 
                   await i.update({ embeds: [errorEmbed], components: [] });
                 }
@@ -943,9 +943,9 @@ client.on("interactionCreate", async (interaction) => {
             confirmationCollector.on('end', (collected) => {
               if (collected.size === 0) {
                 const timeoutEmbed = new EmbedBuilder()
-                  .setTitle("⏰ Confirmation Timeout")
+                  .setTitle("⏰ Bloxly Ticket Confirmation Timeout")
                   .setDescription("You didn't confirm the trading partner in time. Please mention them again or ask staff for assistance.")
-                  .setColor("#00FF46");
+                  .setColor("#BDC2FC");
 
                 confirmationMessage.edit({ embeds: [timeoutEmbed], components: [] }).catch(console.error);
               }
@@ -957,7 +957,7 @@ client.on("interactionCreate", async (interaction) => {
 
             // Question 2: Items being traded
               const question2Embed = new EmbedBuilder()
-                .setTitle("💸 Middleman Service - Question 2/3")
+                .setTitle("💸 Bloxly Middleman Service - Question 2/3")
                 .setDescription("**What items/services are being traded?**\n\nPlease describe what you and your trading partner are exchanging.\n\nYou have 60 seconds to respond.")
                 .setColor("#00FF46")
                 .setThumbnail(interaction.user.displayAvatarURL())
@@ -979,9 +979,9 @@ client.on("interactionCreate", async (interaction) => {
 
                 // Question 3: Additional Information (formerly question 4)
                 const question3Embed = new EmbedBuilder()
-                  .setTitle("💸 Middleman Service - Question 3/3")
+                  .setTitle("💸 Bloxly Middleman Service - Question 3/3")
                   .setDescription("**Any additional information or special conditions?**\n\n(Timeline, specific requirements, etc. Type 'none' if no additional info)\n\nYou have 60 seconds to respond.")
-                  .setColor("#00FF46")
+                  .setColor("#BDC2FC")
                   .setThumbnail(interaction.user.displayAvatarURL())
                   .setFooter({ text: "Question 3 of 3 | 60 seconds to respond" });
 
@@ -1000,14 +1000,14 @@ client.on("interactionCreate", async (interaction) => {
                   const summaryEmbed = new EmbedBuilder()
                     .setTitle("💸 Middleman Service - Trade Summary")
                     .setDescription("**Trade details have been collected successfully!**\n\nHere's a summary of your trade request:")
-                    .setColor("#00FF46")
+                    .setColor("#BDC2FC")
                     .addFields(
-                      { name: "👤 Requester", value: interaction.user.displayName, inline: true },
-                      { name: "👤 Trading Partner", value: tradeData.tradingPartner.displayName, inline: true },
-                      { name: "🎮 Game/Platform", value: tradeData.gameOrPlatform, inline: true },
-                      { name: "📦 Items/Services", value: tradeData.items, inline: false },
-                      { name: "📝 Additional Info", value: tradeData.additionalInfo === 'none' ? 'No additional information provided' : tradeData.additionalInfo, inline: false },
-                      { name: "📋 Status", value: "Waiting for staff assistance", inline: false }
+                      { name: "👤 Bloxly Requester", value: interaction.user.displayName, inline: true },
+                      { name: "👤 Bloxly Trading Partner", value: tradeData.tradingPartner.displayName, inline: true },
+                      { name: "🎮 Bloxly Game/Platform", value: tradeData.gameOrPlatform, inline: true },
+                      { name: "📦 Bloxly Items/Services", value: tradeData.items, inline: false },
+                      { name: "📝 Additional Bloxly Info", value: tradeData.additionalInfo === 'none' ? 'No additional information provided' : tradeData.additionalInfo, inline: false },
+                      { name: "📋 Bloxly Status", value: "Waiting for staff assistance", inline: false }
                     )
                     .setThumbnail(interaction.user.displayAvatarURL())
                     .setFooter({ text: "Bloxly Trading Middleman Service | Staff will assist you shortly" })
@@ -1022,9 +1022,9 @@ client.on("interactionCreate", async (interaction) => {
                 collector3.on('end', collected => {
                   if (collected.size === 0) {
                     const timeoutEmbed = new EmbedBuilder()
-                      .setTitle("⏰ Time Expired")
+                      .setTitle("⏰ Bloxly Time Expired")
                       .setDescription("You did not provide additional information in time.\n\n⚠️ **Deleting ticket in 5 minutes if there are no new messages.**")
-                      .setColor("#00FF46");
+                      .setColor("#BDC2FC");
                     ticket.send({ embeds: [timeoutEmbed] }).then(() => {
                       setTimeout(async () => {
                         try {
@@ -1037,9 +1037,9 @@ client.on("interactionCreate", async (interaction) => {
                               const logChannel = client.channels.cache.get(log);
                               if (logChannel) {
                                 const logEmbed = new EmbedBuilder()
-                                  .setTitle("🗑️ Ticket Auto-Deleted")
+                                  .setTitle("🗑️ Bloxly Middleman Ticket Auto-Deleted")
                                   .setDescription(`**Ticket:** ${ticket.name}\n**Reason:** No response within timeout period\n**Type:** Middleman Services`)
-                                  .setColor("#00FF46")
+                                  .setColor("#BDC2FC")
                                   .setTimestamp()
                                   .setFooter({ text: `Ticket ID: ${ticket.id}` });
 
@@ -1060,9 +1060,9 @@ client.on("interactionCreate", async (interaction) => {
               collector2.on('end', collected => {
                 if (collected.size === 0) {
                   const timeoutEmbed = new EmbedBuilder()
-                    .setTitle("⏰ Time Expired")
+                    .setTitle("⏰ Bloxly Time Expired")
                     .setDescription("You did not provide item information in time.\n\n⚠️ **Deleting ticket in 5 minutes if there are no new messages.**")
-                    .setColor("#00FF46");
+                    .setColor("##BDC2FC");
 
                   ticket.send({ embeds: [timeoutEmbed] }).then(() => {
                     setTimeout(async () => {
@@ -1076,9 +1076,9 @@ client.on("interactionCreate", async (interaction) => {
                             const logChannel = client.channels.cache.get(log);
                             if (logChannel) {
                               const logEmbed = new EmbedBuilder()
-                                .setTitle("🗑️ Ticket Auto-Deleted")
-                                .setDescription(`**Ticket:** ${ticket.name}\n**Reason:** No response within timeout period\n**Type:** Middleman Services`)
-                                .setColor("#00FF46")
+                                .setTitle("🗑️ Bloxly Ticket Auto-Deleted")
+                                .setDescription(`**Ticket:** ${ticket.name}\n**Reason:** No response within timeout period\n**Type:** Bloxly Middleman Services`)
+                                .setColor("#BDC2FC")
                                 .setTimestamp()
                                 .setFooter({ text: `Ticket ID: ${ticket.id}` });
 
@@ -1100,9 +1100,9 @@ client.on("interactionCreate", async (interaction) => {
           collector1.on('end', collected => {
             if (collected.size === 0) {
               const timeoutEmbed = new EmbedBuilder()
-                .setTitle("⏰ Time Expired")
+                .setTitle("⏰ Bloxly Time Expired")
                 .setDescription("You did not provide a trading partner in time. You can still mention them manually or ask staff for assistance.")
-                .setColor("#00FF46");
+                .setColor("#BDC2FC");
               ticket.send({ embeds: [timeoutEmbed] });
             }
           });
@@ -1127,7 +1127,7 @@ client.on("interactionCreate", async (interaction) => {
         const deleteButton = new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              .setLabel("🗑️ Delete")
+              .setLabel("🗑️ Bloxly Ticket Delete")
               .setCustomId("delete")
               .setStyle(ButtonStyle.Danger)
           );
@@ -1135,7 +1135,7 @@ client.on("interactionCreate", async (interaction) => {
         const close2Button = new ActionRowBuilder()
           .addComponents(
             new ButtonBuilder()
-              .setLabel("🔒 Close")
+              .setLabel("🔒 Bloxly Ticket Close")
               .setCustomId("close2")
               .setStyle(ButtonStyle.Primary)
           );
@@ -1180,9 +1180,9 @@ client.on("interactionCreate", async (interaction) => {
           const logChannel = client.channels.cache.get(log);
           if (logChannel) {
             const logEmbed = new EmbedBuilder()
-              .setTitle("🔒 Ticket Closed")
+              .setTitle("🔒 Bloxly Ticket Closed")
               .setDescription(`**User:** <@${interaction.user.id}> closed a ticket.`)
-              .setColor("#00FF46")
+              .setColor("#BDC2FC")
               .setTimestamp()
               .setFooter({ text: `Ticket ID: ${interaction.channel.id}` });
             logChannel.send({ embeds: [logEmbed] }).catch(console.error);
@@ -1201,15 +1201,15 @@ client.on("interactionCreate", async (interaction) => {
         // Check if user has admin permissions
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator) && interaction.user.id !== owner) {
           return interaction.reply({
-            content: "❌ You need administrator permissions to deny point claims.",
+            content: "❌ You need Bloxly administrator permissions to deny point claims.",
             ephemeral: true
           });
         }
 
         const deniedEmbed = new EmbedBuilder()
-          .setTitle("❌ Claim Denied")
-          .setDescription(`Your claim for **${points}** points has been denied by **${interaction.user.displayName}**.\n\n**Claim Failed**`)
-          .setColor("#00FF46")
+          .setTitle("❌ Bloxly Claim Denied")
+          .setDescription(`Your claim for **${points}** points has been denied by **${interaction.user.displayName}**.\n\n**Bloxly Claim Failed**`)
+          .setColor("#BDC2FC")
           .setThumbnail(user.displayAvatarURL());
 
         try {
@@ -1219,17 +1219,17 @@ client.on("interactionCreate", async (interaction) => {
         }
 
         const deniedStaffEmbed = new EmbedBuilder()
-          .setTitle("❌ Claim Denied")
+          .setTitle("❌ Bloxly Claim Denied")
           .setDescription(`Claim for ${user.displayName} has been denied by **${interaction.user.displayName}**.\n\n**Claim Failed**`)
-          .setColor("#00FF46");
+          .setColor("#BDC2FC");
 
         interaction.update({ embeds: [deniedStaffEmbed], components: [] });
 
         // Log the denial to the logs channel
         const logEmbed = new EmbedBuilder()
-          .setTitle("❌ Points Claim Denied")
+          .setTitle("❌ Bloxly Points Claim Denied")
           .setDescription(`**Admin:** ${interaction.user.displayName}\n**User:** ${user.displayName}\n**Points Requested:** ${points}\n**Action:** Claim Denied\n**Status:** Claim Failed`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${userId} | Admin ID: ${interaction.user.id}` });
 
@@ -1250,7 +1250,7 @@ client.on("interactionCreate", async (interaction) => {
         // Check if user has admin permissions
         if (!interaction.member.permissions.has(PermissionsBitField.Flags.Administrator) && interaction.user.id !== owner) {
           return interaction.reply({
-            content: "❌ You need administrator permissions to approve point claims.",
+            content: "❌ You need Bloxly administrator permissions to approve point claims.",
             ephemeral: true
           });
         }
@@ -1260,18 +1260,18 @@ client.on("interactionCreate", async (interaction) => {
         const newBalance = coinManager.getBalance(userId);
 
         const successEmbed = new EmbedBuilder()
-          .setTitle("✅ Points Claimed Successfully")
+          .setTitle("✅ Bloxly Points Claimed Successfully")
           .setDescription(`Successfully claimed **${points}** points for ${user.displayName}!\n**Admin:** ${interaction.user.displayName}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setThumbnail(user.displayAvatarURL());
 
         interaction.update({ embeds: [successEmbed], components: [] });
 
         // Log the approval to the logs channel
         const logEmbed = new EmbedBuilder()
-          .setTitle("✅ Points Claim Approved")
+          .setTitle("✅ Bloxly Points Claim Approved")
           .setDescription(`**Admin:** ${interaction.user.displayName}\n**User:** ${user.displayName}\n**Points Claimed:** ${points}\n**Old Balance:** ${oldBalance}\n**New Balance:** ${newBalance}\n**Action:** Claim Approved`)
-          .setColor("#00FF46")
+          .setColor("#BDC2FC")
           .setTimestamp()
           .setFooter({ text: `User ID: ${userId} | Admin ID: ${interaction.user.id}` });
 
