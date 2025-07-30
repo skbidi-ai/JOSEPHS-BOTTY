@@ -1,0 +1,32 @@
+[
+  {
+    "points": 1,
+    "label": "744T Sheckles",
+    "slug": "744tsheckles",
+    "aliases": ["744t", "sheckles", "744tsheckles"]
+  },
+  {
+    "points": 3,
+    "label": "1x Dragonfly / 200 Robux",
+    "slug": "dragonfly",
+    "aliases": ["dragonfly", "200robux"]
+  },
+  {
+    "points": 5,
+    "label": "1x Any Pet / $5 / 1000 Robux",
+    "slug": "1xpet",
+    "aliases": ["1pet", "5usd", "1000robux"]
+  },
+  {
+    "points": 10,
+    "label": "3x Any Pet / $15 / 2500 Robux",
+    "slug": "3xpet",
+    "aliases": ["3pet", "15usd", "2500robux"]
+  },
+  {
+    "points": 15,
+    "label": "CB Acc or Giant Pet / $20 / 3000 Robux",
+    "slug": "cbacc",
+    "aliases": ["cb", "giantpet", "20usd", "3000robux"]
+  }
+]
